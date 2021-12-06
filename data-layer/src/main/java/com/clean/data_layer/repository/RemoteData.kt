@@ -15,12 +15,25 @@ class RemoteData @Inject constructor(
     private val webService: WebService,
     private val networkConnectivity: NetworkConnectivity
 ) : RemoteDataSource {
+
     override suspend fun loginUser(email: String, password: String): Resource<BaseResponse<User?>> {
-        return processCall { webService.loginUser(email, password) }!!
+        return if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Resource.DataError(Exception("Invalid Email!"))
+        } else if (password.length < 4) {
+            Resource.DataError(Exception("Password Must be greater than or equal to four characters!"))
+        } else {
+            processCall { webService.loginUser(email, password) }!!
+        }
     }
 
     override suspend fun registerUser(name: String, email: String, password: String): Resource<BaseResponse<User?>> {
-        return processCall { webService.registerUser(name, email, password) }!!
+        return if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Resource.DataError(Exception("Invalid Email!"))
+        } else if (password.length < 4) {
+            Resource.DataError(Exception("Password Must be greater than or equal to four characters!"))
+        } else {
+            return processCall { webService.registerUser(name, email, password) }!!
+        }
     }
 
     private suspend fun <T : Any?> processCall(responseCall: suspend () -> Response<T>): Resource<T>? {
@@ -31,7 +44,12 @@ class RemoteData @Inject constructor(
             val response = responseCall.invoke()
             Log.e("processCall", "${response.body()}")
             if (response.isSuccessful) {
-                Resource.Success(response.body())
+                val body = response.body() as BaseResponse<T>
+                if (body.code == 0) {
+                    Resource.Success(response.body())
+                } else {
+                    Resource.DataError(Exception("${body.message}"))
+                }
             } else {
                 return try {
                     Resource.DataError(

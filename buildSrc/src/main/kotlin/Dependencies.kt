@@ -16,12 +16,12 @@ object Deps {
     val constraintLayout by lazy { "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}" }
     val annotation by lazy { "androidx.annotation:annotation:${Versions.androidxAnnotations}" }
     val legacySupport by lazy { "androidx.legacy:legacy-support-v4:${Versions.androidxLegacySupport}" }
-    val lifeCycleCommonJava by lazy { "androidx.lifecycle:lifecycle-common-java8:${Versions.archLifecycleVersion}" }
     val recyclerView by lazy { "androidx.recyclerview:recyclerview:${Versions.recyclerViewVersion}" }
     val cardView by lazy { "androidx.cardview:cardview:${Versions.cardViewVersion}" }
     val gson by lazy { "com.google.code.gson:gson:${Versions.gsonVersion}" }
     val fragmentKtx by lazy { "androidx.fragment:fragment-ktx:${Versions.fragmentKtxVersion}" }
     val ktxCore by lazy { "androidx.core:core-ktx:${Versions.ktxCore}" }
+    val viewBinding by lazy { "androidx.databinding:viewbinding:${Versions.viewBinding}" }
 
 }
 
@@ -44,6 +44,7 @@ object Room {
 }
 
 object ViewModelLifeCycle {
+    val lifeCycleCommonJava by lazy { "androidx.lifecycle:lifecycle-common-java8:${Versions.lifeCycle}" }
     val lifeCycleRuntime by lazy { "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifeCycle}" }
     val lifCycleViewModel by lazy { "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifeCycle}" }
     val lifeCycleLiveData by lazy { "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifeCycle}" }
@@ -51,9 +52,9 @@ object ViewModelLifeCycle {
 
 object Hilt {
     val hilt by lazy { "com.google.dagger:hilt-android:${Versions.hiltVersion}" }
-    val compiler by lazy { "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}" }
+    val hiltCompiler by lazy { "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}" }
     val plugin by lazy { "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltVersion}" }
-    val viewModelCompiler by lazy { "androidx.hilt:hilt-compiler:${Versions.hiltLifeCycleVersion}" }
+    val hiltAndroidXCompiler by lazy { "androidx.hilt:hilt-compiler:${Versions.hiltAndroidXCompiler}" }
     val hiltNavigationGraph by lazy { "androidx.hilt:hilt-navigation-fragment:${Versions.hiltNavGraph}" }
 }
 
@@ -72,12 +73,12 @@ object Testing2 {
     val mockito by lazy { "org.mockito:mockito-android:${Versions.mockito}" }
     val espresso by lazy { "com.android.support.test.espresso:espresso-core:${Versions.espresso}" }
     val testRunner by lazy { "com.android.support.test:runner:${Versions.testRunner}" }
+    val databinding by lazy { "androidx.databinding:databinding-compiler:${Versions.dataBindingCompiler}" }
 }
 
 object KotlinAnko {
     val anko by lazy { "org.jetbrains.anko:anko:${Versions.ankoVersion}" }
 }
-
 
 object Shimmer {
     val shimmer by lazy { "com.facebook.shimmer:shimmer:${Versions.shimmer}" }
@@ -114,4 +115,8 @@ object EasyPermissions {
 
 object DataStore {
     val dataStore by lazy { "androidx.datastore:datastore-preferences:${Versions.datastore}" }
+}
+
+object SplashScreen {
+    val splash by lazy { "androidx.core:core-splashscreen:${Versions.splashScreen}" }
 }

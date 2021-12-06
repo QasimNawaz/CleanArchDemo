@@ -4,7 +4,7 @@ import com.clean.domain_layer.model.BaseResponse
 import com.clean.domain_layer.model.User
 import com.clean.domain_layer.model.state.Resource
 import com.clean.domain_layer.repository.AuthRepository
-import com.clean.domain_layer.usecase.SuspendUseCase
+import com.clean.domain_layer.usecase.base.SuspendUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

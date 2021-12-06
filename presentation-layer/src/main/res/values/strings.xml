@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">presentation-layer</string>
+    <string name="welcome_note">Welcome to the Clean Architecture Demo</string>
 </resources>

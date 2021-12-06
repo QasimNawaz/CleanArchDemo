@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="icon_animator_duration">1500</integer>
+    <integer name="icon_animator_rotate_from">0</integer>
+    <integer name="icon_animator_rotate_to">360</integer>
+
+    <integer name="splash_exit_total_duration">3000</integer>
+    <integer name="splash_exit_icon_duration">2000</integer>
+
+    <integer name="icon_animator_translate_minus">-120</integer>
+    <integer name="icon_animator_translate_above">120</integer>
+
+    <!--    <float name="icon_animator_scale_from">0.5</float>-->
+    <!--    <float name="icon_animator_scale_to">1.0</float>-->
+    <!--    <float name="icon_animator_alpha_from">0</float>-->
+    <!--    <float name="icon_animator_alpha_to">0.25</float>-->
+
+    <item name="icon_animator_scale_from" format="float" type="dimen">0.3</item>
+    <item name="icon_animator_scale_to" format="float" type="dimen">1.0</item>
+    <item name="icon_animator_alpha_from" format="float" type="dimen">0</item>
+    <item name="icon_animator_alpha_to" format="float" type="dimen">0.25</item>
+</resources>

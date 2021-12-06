@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_navigation"
+    app:startDestination="@id/login_screen">
+
+    <fragment
+        android:id="@+id/login_screen"
+        android:name="com.clean.presentation_layer.ui.auth.login.LoginFragment"
+        android:label="fragment_title_screen"
+        tools:layout="@layout/login_fragment">
+        <action
+            android:id="@+id/action_login_screen_to_sign_up"
+            app:destination="@id/signup_screen"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signup_screen"
+        android:name="com.clean.presentation_layer.ui.auth.register.SignUpFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/sign_up_fragment">
+        <action
+            android:id="@+id/action_sign_up_to_login"
+            app:destination="@id/login_screen"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+
+</navigation>

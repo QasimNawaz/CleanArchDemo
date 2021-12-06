@@ -1,10 +1,7 @@
 package com.clean.domain_layer.model
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class User(
 
     @field:SerializedName("Email")
@@ -18,4 +15,4 @@ data class User(
 
     @field:SerializedName("Name")
     val name: String? = null
-) : Parcelable
+)

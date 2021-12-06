@@ -2,20 +2,20 @@ plugins {
     id("com.android.library")
     kotlin("android")
     id("androidx.navigation.safeargs.kotlin")
-//    id("kotlin-android-extensions")
+    id("kotlin-android-extensions")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("kotlin-android")
 }
 
 android {
-    compileSdkVersion(ConfigData.compileSdkVersion)
+    compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion(ConfigData.minSdkVersion)
-        targetSdkVersion(ConfigData.targetSdkVersion)
-        versionCode = ConfigData.versionCode
-        versionName = ConfigData.versionName
+        minSdk = ConfigData.minSdkVersion
+        targetSdk = ConfigData.targetSdkVersion
+//        versionCode = ConfigData.versionCode
+//        versionName = ConfigData.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -37,12 +37,16 @@ android {
             jvmTarget = "1.8"
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     // other modules
     implementation(project(":domain-layer"))
+    implementation(project(":data-layer"))
     implementation(Deps.kotlin)
     implementation(Deps.appCompat)
     implementation(Deps.materialDesign)
@@ -54,22 +58,48 @@ dependencies {
     implementation(Deps.recyclerView)
     implementation(Deps.cardView)
     implementation(Deps.ktxCore)
-    implementation("androidx.appcompat:appcompat:1.4.0")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.2")
-
+    implementation(Deps.viewBinding)
 
     // Dependencies for Testing
-//    testImplementation(Testing.jUnit)
-//    androidTestImplementation(Testing.extJUnit)
     testImplementation(Testing.jUnit)
-    testImplementation(Testing2.mockitoCore)
-    androidTestImplementation(Testing2.testRunner)
-    androidTestImplementation(Testing2.mockito)
-    androidTestImplementation(Testing2.espresso)
+    androidTestImplementation(Testing.extJUnit)
+//    testImplementation(Testing.jUnit)
+//    testImplementation(Testing2.mockitoCore)
+//    androidTestImplementation(Testing2.testRunner)
+//    androidTestImplementation(Testing2.mockito)
+//    androidTestImplementation(Testing2.espresso)
+//    kaptTest(Testing2.databinding)
+
     // Dependencies for Hilt
     implementation(Hilt.hilt)
     implementation(Hilt.hiltNavigationGraph)
-    kapt(Hilt.compiler)
-    kapt(Hilt.viewModelCompiler)
+    kapt(Hilt.hiltCompiler)
+    kapt(Hilt.hiltAndroidXCompiler)
+
+    //Navigation component
+    implementation(Navigation.navigationFrg)
+    implementation(Navigation.navigationUI)
+    implementation(Navigation.navigationFrgKtx)
+    implementation(Navigation.navigationUIKtx)
+    implementation(Navigation.navigationDynFeature)
+
+    implementation(SplashScreen.splash)
+
+    // Anko
+    implementation(KotlinAnko.anko)
+
+    // Ktx
+    implementation(Deps.fragmentKtx)
+
+    //ViewModel and LifeCycle
+    implementation(ViewModelLifeCycle.lifeCycleCommonJava)
+    implementation(ViewModelLifeCycle.lifCycleViewModel)
+    implementation(ViewModelLifeCycle.lifeCycleLiveData)
+    implementation(ViewModelLifeCycle.lifeCycleRuntime)
+
+    //Intuit
+    implementation(Intuit.sdp)
+    implementation(Intuit.ssp)
+
+//    implementation("com.algolia:instantsearch-androidx:1.14.0")
 }

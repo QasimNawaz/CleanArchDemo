@@ -2,19 +2,19 @@ plugins {
     id("com.android.library")
     kotlin("android")
     id("androidx.navigation.safeargs.kotlin")
-//    id("kotlin-android-extensions")
+    id("kotlin-android-extensions")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
 
 android {
-    compileSdkVersion(ConfigData.compileSdkVersion)
+    compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion(ConfigData.minSdkVersion)
-        targetSdkVersion(ConfigData.targetSdkVersion)
-        versionCode = ConfigData.versionCode
-        versionName = ConfigData.versionName
+        minSdk = ConfigData.minSdkVersion
+        targetSdk = ConfigData.targetSdkVersion
+//        versionCode = ConfigData.versionCode
+//        versionName = ConfigData.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -28,7 +28,7 @@ android {
             buildConfigField("String", "BASE_URL", "\"" + ConfigData.REL_BASE_URL + "\"")
         }
         getByName("debug") {
-            isDebuggable = true
+//            isDebuggable = true
             buildConfigField("String", "BASE_URL", "\"" + ConfigData.DEV_BASE_URL + "\"")
         }
     }
@@ -40,6 +40,9 @@ android {
         kotlinOptions {
             jvmTarget = "1.8"
         }
+    }
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -60,19 +63,19 @@ dependencies {
 
 
     // Dependencies for Testing
-//    testImplementation(Testing.jUnit)
-//    androidTestImplementation(Testing.extJUnit)
     testImplementation(Testing.jUnit)
-    testImplementation(Testing2.mockitoCore)
-    androidTestImplementation(Testing2.testRunner)
-    androidTestImplementation(Testing2.mockito)
-    androidTestImplementation(Testing2.espresso)
+    androidTestImplementation(Testing.extJUnit)
+//    testImplementation(Testing.jUnit)
+//    testImplementation(Testing2.mockitoCore)
+//    androidTestImplementation(Testing2.testRunner)
+//    androidTestImplementation(Testing2.mockito)
+//    androidTestImplementation(Testing2.espresso)
 
     // Dependencies for Hilt
     implementation(Hilt.hilt)
     implementation(Hilt.hiltNavigationGraph)
-    kapt(Hilt.compiler)
-    kapt(Hilt.viewModelCompiler)
+    kapt(Hilt.hiltCompiler)
+    kapt(Hilt.hiltAndroidXCompiler)
 
     // Retrofit2
     implementation(Retrofit.retrofit)

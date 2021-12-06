@@ -1,20 +1,18 @@
-import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin.Companion.isKaptVerbose
-
 plugins {
     id("com.android.application")
     kotlin("android")
     id("androidx.navigation.safeargs.kotlin")
-//    id("kotlin-android-extensions")
+    id("kotlin-android-extensions")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
 
 android {
-    compileSdkVersion(ConfigData.compileSdkVersion)
+    compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion(ConfigData.minSdkVersion)
-        targetSdkVersion(ConfigData.targetSdkVersion)
+        minSdk = ConfigData.minSdkVersion
+        targetSdk = ConfigData.targetSdkVersion
         versionCode = ConfigData.versionCode
         versionName = ConfigData.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -43,6 +41,9 @@ android {
             jvmTarget = "1.8"
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -65,11 +66,7 @@ dependencies {
     implementation(Deps.recyclerView)
     implementation(Deps.cardView)
     implementation(Deps.ktxCore)
-
-
-    // Dependencies for Architecture Component
-    implementation(Deps.appCompat)
-    kapt(Deps.lifeCycleCommonJava)
+    implementation(Deps.viewBinding)
 
     // Dependencies for Room
     implementation(Room.runtime)
@@ -79,21 +76,21 @@ dependencies {
     // Dependencies for Hilt
     implementation(Hilt.hilt)
     implementation(Hilt.hiltNavigationGraph)
-    kapt(Hilt.compiler)
-    kapt(Hilt.viewModelCompiler)
+    kapt(Hilt.hiltCompiler)
+    kapt(Hilt.hiltAndroidXCompiler)
 
     // Dependencies for Glide
     implementation(Glide.glide)
     kapt(Glide.compiler)
 
     // Dependencies for Testing
-//    testImplementation(Testing.jUnit)
-//    androidTestImplementation(Testing.extJUnit)
     testImplementation(Testing.jUnit)
-    testImplementation(Testing2.mockitoCore)
-    androidTestImplementation(Testing2.testRunner)
-    androidTestImplementation(Testing2.mockito)
-    androidTestImplementation(Testing2.espresso)
+    androidTestImplementation(Testing.extJUnit)
+//    testImplementation(Testing.jUnit)
+//    testImplementation(Testing2.mockitoCore)
+//    androidTestImplementation(Testing2.testRunner)
+//    androidTestImplementation(Testing2.mockito)
+//    androidTestImplementation(Testing2.espresso)
 
     // Retrofit2
     implementation(Retrofit.retrofit)
@@ -121,6 +118,7 @@ dependencies {
     implementation(Shimmer.shimmer)
 
     //ViewModel and LifeCycle
+    implementation(ViewModelLifeCycle.lifeCycleCommonJava)
     implementation(ViewModelLifeCycle.lifCycleViewModel)
     implementation(ViewModelLifeCycle.lifeCycleLiveData)
     implementation(ViewModelLifeCycle.lifeCycleRuntime)

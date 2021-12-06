@@ -13,7 +13,7 @@ class SharedPrefManager @Inject constructor(
     @ApplicationContext context: Context,
 ) {
 
-    val sharedPreferences: SharedPreferences = context.getSharedPreferences("ca_pref", Activity.MODE_PRIVATE)
+    val sharedPreferences: SharedPreferences = context.getSharedPreferences("clean_arch_pref", Activity.MODE_PRIVATE)
 
     fun getStringValue(key: String, default: String? = null) =
         sharedPreferences.getString(key, default) ?: default

@@ -1,40 +1,31 @@
 package com.clean.data_layer.local
 
-import android.content.Context
+import com.clean.domain_layer.model.User
 import com.google.gson.Gson
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class SharedPrefs @Inject constructor(
     private val spm: SharedPrefManager,
-    @ApplicationContext private val context: Context,
     private val gson: Gson
 ) {
-//    fun setDarkModeSetting(darkMode: Int) {
-//        spm.setIntValue(SHARED_PREF_DARK_MODE, darkMode)
-//    }
-//
-//    fun getDarkModeSetting() = spm.getIntValue(SHARED_PREF_DARK_MODE)
-//
-//    fun setThemeSetting(darkMode: Int) {
-//        spm.setIntValue(SHARED_PREF_THEME, darkMode)
-//    }
-//
-//    fun getThemeSetting() = spm.getIntValue(SHARED_PREF_THEME)
-//
-//    fun getWatchProviderRegion() = spm.getStringValue(SHARED_PREF_WATCH_PROVIDER_REGION)
-//
-//    fun setWatchProvidersMovie(watchProviders: List<WatchProvider>) {
-//        spm.setList(context, moshi, SHARED_PREF_WATCH_PROVIDER_MOVIE, watchProviders)
-//    }
-//
-//    fun getWatchProvidersMovie() =
-//        spm.getList<WatchProvider>(context, moshi, SHARED_PREF_WATCH_PROVIDER_MOVIE)
-//
-//    companion object {
-//        const val SHARED_PREF_DARK_MODE = "SHARED_PREF_WATCH_PROVIDER_REGION"
-//        const val SHARED_PREF_THEME = "SHARED_PREF_THEME"
-//        const val SHARED_PREF_WATCH_PROVIDER_REGION = "regions_key"
-//        const val SHARED_PREF_WATCH_PROVIDER_MOVIE = "SHARED_PREF_WATCH_PROVIDER_MOVIE"
-//    }
+
+    fun setToken(token: String) {
+        spm.setStringValue(SHARED_PREF_TOKEN, token)
+    }
+
+    fun getToken() = spm.getStringValue(SHARED_PREF_TOKEN, null)
+
+    fun setUser(user: User) {
+        setToken(user.token!!)
+        spm.setStringValue(SHARED_PREF_USER, gson.toJson(user))
+    }
+
+    fun getUser() = gson.fromJson(spm.getStringValue(SHARED_PREF_USER), User::class.java) ?: null
+
+    companion object {
+        const val SHARED_PREF_TOKEN = "SHARED_PREF_TOKEN"
+        const val SHARED_PREF_USER = "SHARED_PREF_USER"
+    }
 }
