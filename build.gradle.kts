@@ -14,6 +14,7 @@ buildscript {
         classpath(BuildPlugins.kotlin)
         classpath(Hilt.plugin)
         classpath(Navigation.navigationSafeArg)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20")
 //        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0")
     }
 }

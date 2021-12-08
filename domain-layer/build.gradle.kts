@@ -78,4 +78,7 @@ dependencies {
     implementation(Coroutines.core)
     implementation(Coroutines.android)
     implementation(Coroutines.playService)
+
+    // Paging
+    implementation(Paging.paging)
 }

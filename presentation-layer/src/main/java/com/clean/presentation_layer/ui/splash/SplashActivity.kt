@@ -2,8 +2,6 @@ package com.clean.presentation_layer.ui.splash
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.app.Application
-import android.content.Intent
 import android.graphics.Path
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +18,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.splashscreen.SplashScreenViewProvider
 import com.clean.presentation_layer.R
 import com.clean.presentation_layer.databinding.ActivitySplashBinding
-import com.clean.presentation_layer.ui.MainActivity
+import com.clean.presentation_layer.ui.bottomnav.MainActivity
 import com.clean.presentation_layer.ui.auth.AuthActivity
 import com.clean.presentation_layer.utils.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">presentation-layer</string>
     <string name="welcome_note">Welcome to the Clean Architecture Demo</string>
+    <string name="paging">Paging</string>
+    <string name="paging_room">Room</string>
 </resources>

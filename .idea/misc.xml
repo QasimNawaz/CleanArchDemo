@@ -12,7 +12,10 @@
         <entry key="presentation-layer/src/main/res/layout/activity_splash.xml" value="0.165" />
         <entry key="presentation-layer/src/main/res/layout/dialog_progress.xml" value="0.17028985507246377" />
         <entry key="presentation-layer/src/main/res/layout/login_fragment.xml" value="0.15070921985815602" />
+        <entry key="presentation-layer/src/main/res/layout/paging_fragment.xml" value="0.17028985507246377" />
+        <entry key="presentation-layer/src/main/res/layout/paging_with_room_fragment.xml" value="0.1" />
         <entry key="presentation-layer/src/main/res/layout/sign_up_fragment.xml" value="0.165" />
+        <entry key="presentation-layer/src/main/res/menu/menu_bottom_nav.xml" value="0.29791666666666666" />
         <entry key="presentation-layer/src/main/res/xml/network_security_config.xml" value="0.1" />
       </map>
     </option>

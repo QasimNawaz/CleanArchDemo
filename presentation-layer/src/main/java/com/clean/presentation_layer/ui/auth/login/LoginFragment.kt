@@ -10,7 +10,7 @@ import com.clean.domain_layer.model.state.Resource
 import com.clean.presentation_layer.R
 import com.clean.presentation_layer.base.BaseFragment
 import com.clean.presentation_layer.databinding.LoginFragmentBinding
-import com.clean.presentation_layer.ui.MainActivity
+import com.clean.presentation_layer.ui.bottomnav.MainActivity
 import com.clean.presentation_layer.utils.observe
 import com.clean.presentation_layer.utils.viewbinding.viewBinding
 import org.jetbrains.anko.support.v4.longToast

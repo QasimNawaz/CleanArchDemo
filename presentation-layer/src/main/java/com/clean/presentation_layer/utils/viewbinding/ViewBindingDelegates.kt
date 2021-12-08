@@ -6,13 +6,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
+import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle.Event.*
 import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
+
 
 class FragmentViewBindingDelegate<T : ViewBinding>(
     val fragment: Fragment,
@@ -20,26 +19,52 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
 ) : ReadOnlyProperty<Fragment, T> {
     private var binding: T? = null
 
+//    init {
+//        fragment.lifecycle.addObserver(object : DefaultLifecycleObserver {
+//            val viewLifecycleOwnerLiveDataObserver =
+//                Observer<LifecycleOwner?> {
+//                    val viewLifecycleOwner = it ?: return@Observer
+//
+//                    viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
+//                        override fun onDestroy(owner: LifecycleOwner) {
+//                            binding = null
+//                        }
+//                    })
+//                }
+//
+//            override fun onCreate(owner: LifecycleOwner) {
+//                fragment.viewLifecycleOwnerLiveData.observeForever(viewLifecycleOwnerLiveDataObserver)
+//            }
+//
+//            override fun onDestroy(owner: LifecycleOwner) {
+//                fragment.viewLifecycleOwnerLiveData.removeObserver(viewLifecycleOwnerLiveDataObserver)
+//            }
+//        })
+//    }
+
     init {
-        fragment.lifecycle.addObserver(object : DefaultLifecycleObserver {
+        fragment.lifecycle.addObserver(object : LifecycleEventObserver {
             val viewLifecycleOwnerLiveDataObserver =
                 Observer<LifecycleOwner?> {
                     val viewLifecycleOwner = it ?: return@Observer
+                    viewLifecycleOwner.lifecycle.addObserver(object : LifecycleEventObserver {
 
-                    viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
-                        override fun onDestroy(owner: LifecycleOwner) {
-                            binding = null
+                        override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+                            if (event == ON_DESTROY) {
+                                binding = null
+                            }
                         }
                     })
                 }
 
-            override fun onCreate(owner: LifecycleOwner) {
-                fragment.viewLifecycleOwnerLiveData.observeForever(viewLifecycleOwnerLiveDataObserver)
+            override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+                if (event == ON_CREATE) {
+                    fragment.viewLifecycleOwnerLiveData.observeForever(viewLifecycleOwnerLiveDataObserver)
+                } else if (event == ON_DESTROY) {
+                    fragment.viewLifecycleOwnerLiveData.removeObserver(viewLifecycleOwnerLiveDataObserver)
+                }
             }
 
-            override fun onDestroy(owner: LifecycleOwner) {
-                fragment.viewLifecycleOwnerLiveData.removeObserver(viewLifecycleOwnerLiveDataObserver)
-            }
         })
     }
 

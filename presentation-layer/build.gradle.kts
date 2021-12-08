@@ -59,6 +59,9 @@ dependencies {
     implementation(Deps.cardView)
     implementation(Deps.ktxCore)
     implementation(Deps.viewBinding)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
 
     // Dependencies for Testing
     testImplementation(Testing.jUnit)
@@ -102,4 +105,6 @@ dependencies {
     implementation(Intuit.ssp)
 
 //    implementation("com.algolia:instantsearch-androidx:1.14.0")
+    // Paging
+    implementation(Paging.paging)
 }
